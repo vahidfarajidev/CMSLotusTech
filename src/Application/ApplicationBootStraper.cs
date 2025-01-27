@@ -1,7 +1,9 @@
-﻿using Application.Datas;
+﻿using Application.Base.Behaviors;
+using Application.Datas;
 using Application.Datas.Commands.CreateData;
 using Application.Datas.Services;
 using Domain.Datas.Services;
+using FluentValidation;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -20,7 +22,10 @@ namespace Application
             services.AddMediatR(configuration =>
             {
                 configuration.RegisterServicesFromAssembly(typeof(CreateDataCommand).Assembly);
+                configuration.AddOpenBehavior(typeof(ValidationPipelineBehavior<,>));
             });
+
+            services.AddValidatorsFromAssembly(typeof(CreateDataCommandValidator).Assembly);
 
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
 
