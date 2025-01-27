@@ -12,6 +12,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.InitCMSLotus(builder.Configuration);
+builder.Host.InitCMSLotusLogging(builder.Configuration);
 
 var app = builder.Build();
 

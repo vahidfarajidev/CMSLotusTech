@@ -18,5 +18,10 @@ namespace Config
             ApplicationBootStraper.RegisterDependency(services);
             InfrastructureBootStraper.RegisterDependency(services, configuration);
         }
+
+        public static void InitCMSLotusLogging(this IHostBuilder hostBuilder, IConfiguration configuration)
+        {
+            LoggingExtensions.AddSerilogLogging(hostBuilder, configuration);
+        }
     }
 }

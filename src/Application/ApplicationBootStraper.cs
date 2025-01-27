@@ -22,6 +22,7 @@ namespace Application
             services.AddMediatR(configuration =>
             {
                 configuration.RegisterServicesFromAssembly(typeof(CreateDataCommand).Assembly);
+                configuration.AddOpenBehavior(typeof(LoggingPipelineBehavior<,>));
                 configuration.AddOpenBehavior(typeof(ValidationPipelineBehavior<,>));
             });
 

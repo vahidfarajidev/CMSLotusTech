@@ -27,7 +27,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Base\" />
     <Folder Include="Persistence\Elastic\" />
     <Folder Include="Persistence\Mongo\" />
     <Folder Include="Persistence\SQLServer\Dapper\" />
