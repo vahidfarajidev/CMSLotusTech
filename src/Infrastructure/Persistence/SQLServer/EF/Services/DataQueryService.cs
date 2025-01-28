@@ -21,6 +21,7 @@ namespace Infrastructure.Persistence.SQLServer.EF.Services
         {
             var dataEntity = await _dbContext.Datas
                 .Include(d => d.DataCategory)
+                .Include(d=> d.Author)
                 .FirstOrDefaultAsync(d => d.Id == id);
             
             return _mapper.Map<DataQueryModel>(dataEntity);

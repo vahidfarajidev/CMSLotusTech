@@ -18,4 +18,21 @@
     <ProjectReference Include="..\Domain\Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Authors\Commands\" />
+    <Folder Include="Authors\Services\" />
+    <Folder Include="Authors\QueryModels\" />
+    <Folder Include="Authors\Queries\" />
+    <Folder Include="DataCategories\Commands\" />
+    <Folder Include="DataCategories\Services\" />
+    <Folder Include="DataCategories\QueryModels\" />
+    <Folder Include="DataCategories\Queries\" />
+    <Folder Include="Tags\Commands\" />
+    <Folder Include="Tags\Dtos\" />
+    <Folder Include="Tags\Mappings\" />
+    <Folder Include="Tags\Services\" />
+    <Folder Include="Tags\QueryModels\" />
+    <Folder Include="Tags\Queries\" />
+  </ItemGroup>
+
 </Project>

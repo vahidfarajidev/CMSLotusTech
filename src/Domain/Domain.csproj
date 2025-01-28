@@ -7,6 +7,8 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Folder Include="Authors\Events\" />
+    <Folder Include="Authors\Services\" />
     <Folder Include="DataCategories\Events\" />
     <Folder Include="DataCategories\Services\" />
     <Folder Include="Datas\Events\" />

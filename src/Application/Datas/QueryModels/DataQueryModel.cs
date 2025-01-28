@@ -1,4 +1,5 @@
-﻿using Domain.DataCategories.Models;
+﻿using Domain.Authors.Models;
+using Domain.DataCategories.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +12,7 @@ namespace Application.Datas.QueryModels
     {        
         public Guid Id { get; set; }
         public DataCategory DataCategory { get; set; }
+        public Author Author { get; set; }
         public string DataTitle { get; set; }
         public string DataSummary { get; set; }
         public string DataBody { get; set; }

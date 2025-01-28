@@ -27,7 +27,7 @@ namespace Infrastructure.Persistence.SQLServer.EF.Configurations
 
             builder.Property(d => d.DataBody)
                    .IsRequired()
-                   .HasMaxLength(256);
+                   .HasMaxLength(512);
 
             builder.Property(d => d.DataStatus)
                    .IsRequired();
@@ -38,6 +38,10 @@ namespace Infrastructure.Persistence.SQLServer.EF.Configurations
                 .HasForeignKey(d => d.DataCategoryId)
                 .OnDelete(DeleteBehavior.Restrict);
 
+            builder.HasOne(d => d.Author)
+                .WithMany()
+                .HasForeignKey(d => d.AuthorId)
+                .OnDelete(DeleteBehavior.Restrict);
         }
     }
 

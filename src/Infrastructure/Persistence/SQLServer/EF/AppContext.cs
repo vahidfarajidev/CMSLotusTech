@@ -18,6 +18,7 @@ namespace Infrastructure.Persistence.SQLServer.EF
 
         public DbSet<DataEntity> Datas { get; set; }
         public DbSet<DataCategoryEntity> DataCategories { get; set; }
+        public DbSet<AuthorEntity> Authors { get; set; }
         public DbSet<TagEntity> Tags { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

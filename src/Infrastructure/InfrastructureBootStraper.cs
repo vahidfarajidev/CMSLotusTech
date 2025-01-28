@@ -1,5 +1,6 @@
 ﻿using Application.Base.Logs;
 using Application.Datas.Services;
+using Domain.Authors.Repositories;
 using Domain.Base;
 using Domain.DataCategories.Repositories;
 using Domain.Datas.Repositories;
@@ -31,6 +32,7 @@ namespace Infrastructure
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped<IDataRepository, DataRepository>();
             services.AddScoped<IDataCategoryRepository, DataCategoryRepository>();
+            services.AddScoped<IAuthorRepository, AuthorRepository>();
             services.AddScoped<ITagRepository, TagRepository>();
 
             services.AddScoped<IDataQueryService, DataQueryService>();

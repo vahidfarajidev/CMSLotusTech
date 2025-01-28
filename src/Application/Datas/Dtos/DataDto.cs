@@ -1,4 +1,5 @@
-﻿using Application.DataCategories.Dtos;
+﻿using Application.Authors.Dtos;
+using Application.DataCategories.Dtos;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +12,7 @@ namespace Application.Datas.Dtos
     {
         public Guid Id { get; set; }
         public DataCategoryDto DataCategory { get; set; }
+        public AuthorDto Author { get; set; }
         public string DataTitle { get; set; }
         public string DataSummary { get; set; }
         public string DataBody { get; set; }

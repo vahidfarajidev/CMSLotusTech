@@ -1,4 +1,5 @@
 ﻿using Application.Base;
+using Application.Datas.Services;
 using Domain.Base;
 using Domain.Datas.Models;
 using Domain.Datas.Repositories;
@@ -35,9 +36,12 @@ namespace Application.Datas.Commands.CreateData
             // Step 1: Core operation
             if (!await _dataDomainService.DataCategoryExists(request.DataCategoryId))
                 return OperationResult<Guid>.Failure("Invalid DataCategoryId");
+            
+            if (!await _dataDomainService.AuthorExists(request.AuthorId))
+                return OperationResult<Guid>.Failure("Invalid AuthorId");
 
             Data _createdData = Data.Create(request.DataTitle, request.DataSummary, request.DataBody, request.DataStatus,
-                request.DataCategoryId, request.CreatedBy);
+                request.DataCategoryId, request.AuthorId, request.CreatedBy);
 
             await _dataRepository.AddAsync(_createdData, cancellationToken);
 

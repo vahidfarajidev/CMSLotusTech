@@ -10,6 +10,7 @@ namespace Application.Datas.Commands.CreateData
     public class CreateDataCommand : ICommand<Guid>
     {
         public Guid DataCategoryId { get; set; }
+        public Guid AuthorId { get; set; }
         public string DataTitle { get; set; }
         public string DataSummary { get; set; }
         public string DataBody { get; set; }

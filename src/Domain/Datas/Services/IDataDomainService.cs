@@ -9,5 +9,6 @@ namespace Domain.Datas.Services
     public interface IDataDomainService
     {
         public Task<bool> DataCategoryExists(Guid dataCategoryId);
+        public Task<bool> AuthorExists(Guid authorId);
     }
 }

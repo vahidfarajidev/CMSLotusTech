@@ -30,6 +30,7 @@
     <Folder Include="Persistence\Elastic\" />
     <Folder Include="Persistence\Mongo\" />
     <Folder Include="Persistence\SQLServer\Dapper\" />
+    <Folder Include="Persistence\SQLServer\EF\Migrations\" />
   </ItemGroup>
 
 </Project>
