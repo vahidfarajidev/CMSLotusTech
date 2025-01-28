@@ -14,12 +14,12 @@ namespace Infrastructure.Persistence.SQLServer.EF.Repositories
 {
     internal class AuthorRepository : IAuthorRepository
     {
-        private readonly AppDbContext _dbContext;
+        private readonly EFDbContext _efDbContext;
         private readonly IMapper _mapper;
 
-        public AuthorRepository(AppDbContext DbContext, IMapper mapper)
+        public AuthorRepository(EFDbContext efDbContext, IMapper mapper)
         {
-            _dbContext = DbContext;
+            _efDbContext = efDbContext;
             _mapper = mapper;
         }
         public Task AddAsync(Author model, CancellationToken cancellationToken)
@@ -34,7 +34,7 @@ namespace Infrastructure.Persistence.SQLServer.EF.Repositories
 
         public async Task<bool> ExistsAsync(Guid id)
         {
-            return (await _dbContext.Authors.FirstOrDefaultAsync(a => a.Id == id)) != null;
+            return (await _efDbContext.Authors.FirstOrDefaultAsync(a => a.Id == id)) != null;
         }
 
         public Task<IEnumerable<Author>> GetAllAsync()
@@ -44,7 +44,7 @@ namespace Infrastructure.Persistence.SQLServer.EF.Repositories
 
         public async Task<Author?> GetByIdAsync(Guid id)
         {
-            var authorEntity = await _dbContext.Set<AuthorEntity>().FirstOrDefaultAsync(a => a.Id.Equals(id));
+            var authorEntity = await _efDbContext.Set<AuthorEntity>().FirstOrDefaultAsync(a => a.Id.Equals(id));
             return _mapper.Map<Author>(authorEntity);
         }
 

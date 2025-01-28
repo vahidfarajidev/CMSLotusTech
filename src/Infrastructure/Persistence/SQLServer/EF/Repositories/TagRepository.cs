@@ -11,12 +11,12 @@ namespace Infrastructure.Persistence.SQLServer.EF.Repositories
 {
     public class TagRepository : ITagRepository
     {
-        private readonly AppDbContext _dbContext;
+        private readonly EFDbContext _efDbContext;
         private readonly IMapper _mapper;
 
-        public TagRepository(AppDbContext dbContext, IMapper mapper)
+        public TagRepository(EFDbContext efDbContext, IMapper mapper)
         {
-            _dbContext = dbContext;
+            _efDbContext = efDbContext;
             _mapper = mapper;
         }
 

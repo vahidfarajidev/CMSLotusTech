@@ -14,12 +14,12 @@ namespace Infrastructure.Persistence.SQLServer.EF.Repositories
 {
     public class DataCategoryRepository : IDataCategoryRepository
     {
-        private readonly AppDbContext _dbContext;
+        private readonly EFDbContext _efDbContext;
         private readonly IMapper _mapper;
 
-        public DataCategoryRepository(AppDbContext dbContext, IMapper mapper)
+        public DataCategoryRepository(EFDbContext efDbContext, IMapper mapper)
         {
-            _dbContext = dbContext;
+            _efDbContext = efDbContext;
             _mapper = mapper;
         }
 
@@ -40,13 +40,13 @@ namespace Infrastructure.Persistence.SQLServer.EF.Repositories
 
         public async Task<DataCategory?> GetByIdAsync(Guid id)
         {
-            var dataCategoryEntity = await _dbContext.Set<DataCategoryEntity>().FirstOrDefaultAsync(dc => dc.Id.Equals(id));
+            var dataCategoryEntity = await _efDbContext.Set<DataCategoryEntity>().FirstOrDefaultAsync(dc => dc.Id.Equals(id));
             return _mapper.Map<DataCategory>(dataCategoryEntity);
         }
 
         public async Task<bool> ExistsAsync(Guid id)
         {
-            return (await _dbContext.DataCategories.FirstOrDefaultAsync(dc => dc.Id == id)) != null;
+            return (await _efDbContext.DataCategories.FirstOrDefaultAsync(dc => dc.Id == id)) != null;
         }
 
         public Task UpdateAsync(DataCategory entity)

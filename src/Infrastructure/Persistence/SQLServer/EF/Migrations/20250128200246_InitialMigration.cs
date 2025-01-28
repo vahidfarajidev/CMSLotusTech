@@ -16,9 +16,9 @@ namespace Infrastructure.Persistence.SQLServer.EF.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    FullName = table.Column<string>(type: "nvarchar(256)", nullable: false),
-                    Email = table.Column<string>(type: "nvarchar(256)", nullable: false),
-                    Comment = table.Column<string>(type: "nvarchar(512)", nullable: true),
+                    FullName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: false),
+                    Email = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: false),
+                    Comment = table.Column<string>(type: "nvarchar(512)", maxLength: 512, nullable: true),
                     CreatedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     CreatedDateTime = table.Column<DateTime>(type: "datetime2", nullable: false),
                     LastUpdatedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
@@ -34,7 +34,7 @@ namespace Infrastructure.Persistence.SQLServer.EF.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    DataCategoryName = table.Column<string>(type: "nvarchar(256)", nullable: false),
+                    DataCategoryName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: false),
                     IsActive = table.Column<bool>(type: "bit", nullable: false),
                     CreatedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     CreatedDateTime = table.Column<DateTime>(type: "datetime2", nullable: false),
@@ -47,11 +47,11 @@ namespace Infrastructure.Persistence.SQLServer.EF.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Tags",
+                name: "Tag",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    TagName = table.Column<string>(type: "nvarchar(256)", nullable: false),
+                    TagName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: false),
                     IsActive = table.Column<bool>(type: "bit", nullable: false),
                     CreatedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     CreatedDateTime = table.Column<DateTime>(type: "datetime2", nullable: false),
@@ -60,7 +60,7 @@ namespace Infrastructure.Persistence.SQLServer.EF.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Tags", x => x.Id);
+                    table.PrimaryKey("PK_Tag", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -70,9 +70,9 @@ namespace Infrastructure.Persistence.SQLServer.EF.Migrations
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     DataCategoryId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     AuthorId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    DataTitle = table.Column<string>(type: "nvarchar(256)", nullable: false),
-                    DataSummary = table.Column<string>(type: "nvarchar(256)", nullable: false),
-                    DataBody = table.Column<string>(type: "nvarchar(512)", nullable: false),
+                    DataTitle = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: false),
+                    DataSummary = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: false),
+                    DataBody = table.Column<string>(type: "nvarchar(512)", maxLength: 512, nullable: false),
                     DataStatus = table.Column<int>(type: "int", nullable: false),
                     CreatedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     CreatedDateTime = table.Column<DateTime>(type: "datetime2", nullable: false),
@@ -87,13 +87,13 @@ namespace Infrastructure.Persistence.SQLServer.EF.Migrations
                         column: x => x.AuthorId,
                         principalTable: "Authors",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Datas_DataCategories_DataCategoryId",
                         column: x => x.DataCategoryId,
                         principalTable: "DataCategories",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateIndex(
@@ -114,7 +114,7 @@ namespace Infrastructure.Persistence.SQLServer.EF.Migrations
                 name: "Datas");
 
             migrationBuilder.DropTable(
-                name: "Tags");
+                name: "Tag");
 
             migrationBuilder.DropTable(
                 name: "Authors");

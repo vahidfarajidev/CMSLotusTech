@@ -41,7 +41,7 @@ namespace Infrastructure
 
             services.AddScoped<IAppLogger, SerilogAppLogger>();
 
-            services.AddDbContext<Persistence.SQLServer.EF.AppDbContext>(options =>
+            services.AddDbContext<EFDbContext>(options =>
                 options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
 
         }

@@ -10,19 +10,19 @@ namespace Infrastructure.Persistence.SQLServer.EF
 {
     public class UnitOfWork : IUnitOfWork
     {
-        private readonly AppDbContext _dbContext;
+        private readonly EFDbContext _efDbContext;
 
-        public UnitOfWork(AppDbContext dbContext)
+        public UnitOfWork(EFDbContext efDbContext)
         {
-            _dbContext = dbContext ?? throw new ArgumentNullException(nameof(dbContext));
+            _efDbContext = efDbContext ?? throw new ArgumentNullException(nameof(efDbContext));
         }
 
         public Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
         {
-            return _dbContext.SaveChangesAsync(cancellationToken);
+            return _efDbContext.SaveChangesAsync(cancellationToken);
         }
 
-        public void Dispose() => _dbContext.Dispose();
+        public void Dispose() => _efDbContext.Dispose();
     }
 
 }

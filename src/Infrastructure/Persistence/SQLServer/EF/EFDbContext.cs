@@ -9,9 +9,9 @@ using System.Threading.Tasks;
 
 namespace Infrastructure.Persistence.SQLServer.EF
 {
-    public class AppDbContext : DbContext
+    public class EFDbContext : DbContext
     {
-        public AppDbContext(DbContextOptions<AppDbContext> options)
+        public EFDbContext(DbContextOptions<EFDbContext> options)
             : base(options)
         {
         }
@@ -29,7 +29,7 @@ namespace Infrastructure.Persistence.SQLServer.EF
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.ApplyConfigurationsFromAssembly(typeof(AppDbContext).Assembly);
+            modelBuilder.ApplyConfigurationsFromAssembly(typeof(EFDbContext).Assembly);
             base.OnModelCreating(modelBuilder);
         }
     }

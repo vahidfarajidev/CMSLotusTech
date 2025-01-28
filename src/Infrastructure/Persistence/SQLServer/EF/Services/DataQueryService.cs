@@ -12,14 +12,14 @@ using System.Threading.Tasks;
 
 namespace Infrastructure.Persistence.SQLServer.EF.Services
 {
-    public class DataQueryService(AppDbContext dbContext, IMapper _mapper) : IDataQueryService
+    public class DataQueryService(EFDbContext efDbContext, IMapper _mapper) : IDataQueryService
     {
-        private readonly AppDbContext _dbContext = dbContext;
+        private readonly EFDbContext _efDbContext = efDbContext;
         private readonly IMapper _mapper = _mapper;
 
         public async Task<DataQueryModel> GetDataById(Guid id)
         {
-            var dataEntity = await _dbContext.Datas
+            var dataEntity = await _efDbContext.Datas
                 .Include(d => d.DataCategory)
                 .Include(d=> d.Author)
                 .FirstOrDefaultAsync(d => d.Id == id);

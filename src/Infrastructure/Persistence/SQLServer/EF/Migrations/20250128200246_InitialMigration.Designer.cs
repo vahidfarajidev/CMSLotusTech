@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Infrastructure.Persistence.SQLServer.EF.Migrations
 {
-    [DbContext(typeof(AppDbContext))]
-    [Migration("20250128141419_InitialMigration")]
+    [DbContext(typeof(EFDbContext))]
+    [Migration("20250128200246_InitialMigration")]
     partial class InitialMigration
     {
         /// <inheritdoc />
@@ -32,7 +32,8 @@ namespace Infrastructure.Persistence.SQLServer.EF.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Comment")
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(512)
+                        .HasColumnType("nvarchar(512)");
 
                     b.Property<Guid>("CreatedBy")
                         .HasColumnType("uniqueidentifier");
@@ -42,11 +43,13 @@ namespace Infrastructure.Persistence.SQLServer.EF.Migrations
 
                     b.Property<string>("Email")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
 
                     b.Property<string>("FullName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
 
                     b.Property<DateTime?>("LastUpdateDateTime")
                         .HasColumnType("datetime2");
@@ -56,7 +59,7 @@ namespace Infrastructure.Persistence.SQLServer.EF.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Authors");
+                    b.ToTable("Authors", (string)null);
                 });
 
             modelBuilder.Entity("Infrastructure.Persistence.SQLServer.EF.Entities.DataCategoryEntity", b =>
@@ -73,7 +76,8 @@ namespace Infrastructure.Persistence.SQLServer.EF.Migrations
 
                     b.Property<string>("DataCategoryName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
 
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
@@ -86,7 +90,7 @@ namespace Infrastructure.Persistence.SQLServer.EF.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("DataCategories");
+                    b.ToTable("DataCategories", (string)null);
                 });
 
             modelBuilder.Entity("Infrastructure.Persistence.SQLServer.EF.Entities.DataEntity", b =>
@@ -106,7 +110,8 @@ namespace Infrastructure.Persistence.SQLServer.EF.Migrations
 
                     b.Property<string>("DataBody")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(512)
+                        .HasColumnType("nvarchar(512)");
 
                     b.Property<Guid>("DataCategoryId")
                         .HasColumnType("uniqueidentifier");
@@ -116,11 +121,13 @@ namespace Infrastructure.Persistence.SQLServer.EF.Migrations
 
                     b.Property<string>("DataSummary")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
 
                     b.Property<string>("DataTitle")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
 
                     b.Property<DateTime?>("LastUpdateDateTime")
                         .HasColumnType("datetime2");
@@ -134,7 +141,7 @@ namespace Infrastructure.Persistence.SQLServer.EF.Migrations
 
                     b.HasIndex("DataCategoryId");
 
-                    b.ToTable("Datas");
+                    b.ToTable("Datas", (string)null);
                 });
 
             modelBuilder.Entity("Infrastructure.Persistence.SQLServer.EF.Entities.TagEntity", b =>
@@ -160,11 +167,12 @@ namespace Infrastructure.Persistence.SQLServer.EF.Migrations
 
                     b.Property<string>("TagName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Tags");
+                    b.ToTable("Tag", (string)null);
                 });
 
             modelBuilder.Entity("Infrastructure.Persistence.SQLServer.EF.Entities.DataEntity", b =>
@@ -172,13 +180,13 @@ namespace Infrastructure.Persistence.SQLServer.EF.Migrations
                     b.HasOne("Infrastructure.Persistence.SQLServer.EF.Entities.AuthorEntity", "Author")
                         .WithMany()
                         .HasForeignKey("AuthorId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("Infrastructure.Persistence.SQLServer.EF.Entities.DataCategoryEntity", "DataCategory")
                         .WithMany()
                         .HasForeignKey("DataCategoryId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("Author");

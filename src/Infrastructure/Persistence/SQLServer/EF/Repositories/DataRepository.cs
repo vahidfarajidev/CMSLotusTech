@@ -15,12 +15,12 @@ namespace Infrastructure.Persistence.SQLServer.EF.Repositories
 {
     public class DataRepository : IDataRepository
     {
-        private readonly AppDbContext _dbContext;
+        private readonly EFDbContext _efDbContext;
         private readonly IMapper _mapper;
 
-        public DataRepository(AppDbContext dbContext, IMapper mapper)
+        public DataRepository(EFDbContext efDbContext, IMapper mapper)
         {
-            _dbContext = dbContext;
+            _efDbContext = efDbContext;
             _mapper = mapper;
         }
 
@@ -28,7 +28,7 @@ namespace Infrastructure.Persistence.SQLServer.EF.Repositories
         {
             var dataEntity = _mapper.Map<DataEntity>(data);
 
-            await _dbContext.AddAsync(dataEntity);
+            await _efDbContext.AddAsync(dataEntity);
         }
 
         public Task DeleteAsync(Guid id)
@@ -48,7 +48,7 @@ namespace Infrastructure.Persistence.SQLServer.EF.Repositories
 
         public async Task<Data> GetDataByIdTestAsync(Guid id)
         {
-            var dataEntity = await _dbContext.Set<DataEntity>().FirstOrDefaultAsync(d => d.Id.Equals(id));
+            var dataEntity = await _efDbContext.Set<DataEntity>().FirstOrDefaultAsync(d => d.Id.Equals(id));
             return _mapper.Map<Data>(dataEntity);
         }
 

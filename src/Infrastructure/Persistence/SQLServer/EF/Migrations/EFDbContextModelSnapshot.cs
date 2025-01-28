@@ -4,19 +4,16 @@ using Infrastructure.Persistence.SQLServer.EF;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
 namespace Infrastructure.Persistence.SQLServer.EF.Migrations
 {
-    [DbContext(typeof(AppDbContext))]
-    [Migration("20250128191705_FixAppDbContextName")]
-    partial class FixAppDbContextName
+    [DbContext(typeof(EFDbContext))]
+    partial class EFDbContextModelSnapshot : ModelSnapshot
     {
-        /// <inheritdoc />
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
