@@ -14,9 +14,9 @@ namespace Infrastructure.Persistence.SQLServer.EF.Repositories
         private readonly AppDbContext _dbContext;
         private readonly IMapper _mapper;
 
-        public TagRepository(AppDbContext commandContext, IMapper mapper)
+        public TagRepository(AppDbContext dbContext, IMapper mapper)
         {
-            _dbContext = commandContext;
+            _dbContext = dbContext;
             _mapper = mapper;
         }
 

@@ -18,9 +18,9 @@ namespace Infrastructure.Persistence.SQLServer.EF.Repositories
         private readonly AppDbContext _dbContext;
         private readonly IMapper _mapper;
 
-        public DataRepository(AppDbContext commandContext, IMapper mapper)
+        public DataRepository(AppDbContext dbContext, IMapper mapper)
         {
-            _dbContext = commandContext;
+            _dbContext = dbContext;
             _mapper = mapper;
         }
 
