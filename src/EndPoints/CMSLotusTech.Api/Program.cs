@@ -1,3 +1,4 @@
+using CMSLotusTech.Api.Middlewares;
 using Config;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -31,6 +32,8 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
+
+app.UseApiExceptionHandler();
 
 app.MapControllers();
 
