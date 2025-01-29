@@ -34,10 +34,10 @@ namespace Application.Datas.Commands.CreateData
         protected override async Task<OperationResult<Guid>> ExecuteAsync(CreateDataCommand request, CancellationToken cancellationToken)
         {
             // Step 1: Core operation
-            if (!await _dataDomainService.DataCategoryExists(request.DataCategoryId))
+            if (!await _dataDomainService.DataCategoryExists(request.DataCategoryId, cancellationToken))
                 return OperationResult<Guid>.Failure("Invalid DataCategoryId");
             
-            if (!await _dataDomainService.AuthorExists(request.AuthorId))
+            if (!await _dataDomainService.AuthorExists(request.AuthorId, cancellationToken))
                 return OperationResult<Guid>.Failure("Invalid AuthorId");
 
             Data _createdData = Data.Create(request.DataTitle, request.DataSummary, request.DataBody, request.DataStatus,

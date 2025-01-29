@@ -23,7 +23,7 @@ namespace Application.Datas.Queries.GetDataById
 
         public async Task<OperationResult<DataDtoTest>> Handle(GetDataByIdTestQuery request, CancellationToken cancellationToken)
         {
-            var data = await _dataRepository.GetDataByIdTestAsync(request.id);
+            var data = await _dataRepository.GetDataByIdTestAsync(request.id, cancellationToken);
             if (data == null)
                 return OperationResult<DataDtoTest>.Failure("Data not found.");
 

@@ -12,45 +12,11 @@ using System.Threading.Tasks;
 
 namespace Infrastructure.Persistence.SQLServer.EF.Repositories
 {
-    internal class AuthorRepository : IAuthorRepository
+    public class AuthorRepository : BaseRepository<Author, AuthorEntity>, IAuthorRepository
     {
-        private readonly EFDbContext _efDbContext;
-        private readonly IMapper _mapper;
+        public AuthorRepository(EFDbContext efDbContext, IMapper mapper) : base(efDbContext, mapper)
+        {
 
-        public AuthorRepository(EFDbContext efDbContext, IMapper mapper)
-        {
-            _efDbContext = efDbContext;
-            _mapper = mapper;
-        }
-        public Task AddAsync(Author model, CancellationToken cancellationToken)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task DeleteAsync(Guid id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public async Task<bool> ExistsAsync(Guid id)
-        {
-            return (await _efDbContext.Authors.FirstOrDefaultAsync(a => a.Id == id)) != null;
-        }
-
-        public Task<IEnumerable<Author>> GetAllAsync()
-        {
-            throw new NotImplementedException();
-        }
-
-        public async Task<Author?> GetByIdAsync(Guid id)
-        {
-            var authorEntity = await _efDbContext.Set<AuthorEntity>().FirstOrDefaultAsync(a => a.Id.Equals(id));
-            return _mapper.Map<Author>(authorEntity);
-        }
-
-        public Task UpdateAsync(Author model)
-        {
-            throw new NotImplementedException();
         }
     }
 }

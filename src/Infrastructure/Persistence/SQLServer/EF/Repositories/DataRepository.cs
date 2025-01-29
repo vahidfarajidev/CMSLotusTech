@@ -13,53 +13,19 @@ using System.Threading.Tasks;
 
 namespace Infrastructure.Persistence.SQLServer.EF.Repositories
 {
-    public class DataRepository : IDataRepository
+    public class DataRepository : BaseRepository<Data, DataEntity>, IDataRepository
     {
-        private readonly EFDbContext _efDbContext;
-        private readonly IMapper _mapper;
 
-        public DataRepository(EFDbContext efDbContext, IMapper mapper)
+        public DataRepository(EFDbContext efDbContext, IMapper mapper) : base(efDbContext, mapper)
         {
-            _efDbContext = efDbContext;
-            _mapper = mapper;
+
         }
 
-        public async Task AddAsync(Data data, CancellationToken cancellationToken)
+        public async Task<Data> GetDataByIdTestAsync(Guid id, CancellationToken cancellationToken)
         {
-            var dataEntity = _mapper.Map<DataEntity>(data);
+            var dataEntity = await _efDbContext.Set<DataEntity>().FirstOrDefaultAsync(d => d.Id.Equals(id), cancellationToken);
 
-            await _efDbContext.AddAsync(dataEntity);
-        }
-
-        public Task DeleteAsync(Guid id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<IEnumerable<Data>> GetAllAsync()
-        {
-            throw new NotImplementedException();
-        }
-
-        public async Task<Data?> GetByIdAsync(Guid id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public async Task<Data> GetDataByIdTestAsync(Guid id)
-        {
-            var dataEntity = await _efDbContext.Set<DataEntity>().FirstOrDefaultAsync(d => d.Id.Equals(id));
             return _mapper.Map<Data>(dataEntity);
         }
-
-        public Task<bool> ExistsAsync(Guid id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task UpdateAsync(Data data)
-        {
-            throw new NotImplementedException();
-        }
-    }
+    }   
 }

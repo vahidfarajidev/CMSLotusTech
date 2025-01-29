@@ -21,14 +21,14 @@ namespace Application.Datas.Services
             _authorRepository = authorRepository;
         }
 
-        public async Task<bool> DataCategoryExists(Guid dataCategoryId)
+        public async Task<bool> DataCategoryExists(Guid dataCategoryId, CancellationToken cancellationToken)
         {
-            return await _dataCategoryRepository.ExistsAsync(dataCategoryId);
+            return await _dataCategoryRepository.ExistsAsync(dataCategoryId, cancellationToken);
         }
 
-        public async Task<bool> AuthorExists(Guid authorId)
+        public async Task<bool> AuthorExists(Guid authorId, CancellationToken cancellationToken)
         {
-            return await _authorRepository.ExistsAsync(authorId);
+            return await _authorRepository.ExistsAsync(authorId, cancellationToken);
         }
     }
 }

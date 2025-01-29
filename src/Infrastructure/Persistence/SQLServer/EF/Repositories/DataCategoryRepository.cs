@@ -12,46 +12,11 @@ using System.Threading.Tasks;
 
 namespace Infrastructure.Persistence.SQLServer.EF.Repositories
 {
-    public class DataCategoryRepository : IDataCategoryRepository
+    public class DataCategoryRepository : BaseRepository<DataCategory, DataCategoryEntity>, IDataCategoryRepository
     {
-        private readonly EFDbContext _efDbContext;
-        private readonly IMapper _mapper;
-
-        public DataCategoryRepository(EFDbContext efDbContext, IMapper mapper)
+        public DataCategoryRepository(EFDbContext efDbContext, IMapper mapper) : base(efDbContext, mapper)
         {
-            _efDbContext = efDbContext;
-            _mapper = mapper;
-        }
 
-        public Task AddAsync(DataCategory entity, CancellationToken cancellationToken)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task DeleteAsync(Guid id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<IEnumerable<DataCategory>> GetAllAsync()
-        {
-            throw new NotImplementedException();
-        }
-
-        public async Task<DataCategory?> GetByIdAsync(Guid id)
-        {
-            var dataCategoryEntity = await _efDbContext.Set<DataCategoryEntity>().FirstOrDefaultAsync(dc => dc.Id.Equals(id));
-            return _mapper.Map<DataCategory>(dataCategoryEntity);
-        }
-
-        public async Task<bool> ExistsAsync(Guid id)
-        {
-            return (await _efDbContext.DataCategories.FirstOrDefaultAsync(dc => dc.Id == id)) != null;
-        }
-
-        public Task UpdateAsync(DataCategory entity)
-        {
-            throw new NotImplementedException();
         }
     }
 }
