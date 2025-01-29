@@ -1,10 +1,8 @@
-﻿using Application.Base.Behaviors;
-using Application.Datas;
-using Application.Datas.Commands.CreateData;
-using Application.Datas.Services;
-using Domain.Datas.Services;
+﻿using Application.Behaviors;
+using Application.Core.Datas;
+using Application.Core.Datas.Commands.CreateData;
+using Domain.Core.Datas;
 using FluentValidation;
-using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;

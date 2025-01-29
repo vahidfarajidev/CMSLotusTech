@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using Domain.Authors.Models;
+using Domain.Core.Authors.Models;
 using Infrastructure.Persistence.SQLServer.EF.Entities;
 using System;
 using System.Collections.Generic;

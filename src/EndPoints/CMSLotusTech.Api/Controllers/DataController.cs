@@ -1,6 +1,5 @@
-﻿using Application.Datas.Commands.CreateData;
-using Application.Datas.Queries.GetDataById;
-using Application.Datas.Queries.GetDataByIdWithInfo;
+﻿using Application.Core.Datas.Commands.CreateData;
+using Application.Core.Datas.Queries.GetDataById;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.HttpResults;
@@ -28,17 +27,6 @@ namespace CMSLotusTech.Api.Controllers
                 return BadRequest(new { error = result.Error });
 
             return Ok(result.Value);
-        }
-
-        [HttpGet("Test/{id}")]
-        public async Task<IActionResult> GetDataByIdTest(Guid id)
-        {
-            var operationResult = await _mediator.Send(new GetDataByIdTestQuery(id));
-            
-            if (operationResult.IsFailure)
-                return NotFound(new { error = operationResult.Error });
-
-            return Ok(operationResult.Value);
         }
 
         [HttpGet("{id}")]

@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
-using Domain.Authors.Models;
-using Domain.Authors.Repositories;
-using Domain.DataCategories.Models;
+using Domain.Core.Authors;
+using Domain.Core.Authors.Models;
 using Infrastructure.Persistence.SQLServer.EF.Entities;
 using Microsoft.EntityFrameworkCore;
 using System;

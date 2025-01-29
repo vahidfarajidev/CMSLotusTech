@@ -1,27 +1,26 @@
-﻿using Application.Base.Services;
-using Application.Datas.Services;
-using Domain.Authors.Repositories;
-using Domain.Base;
-using Domain.DataCategories.Repositories;
-using Domain.Datas.Repositories;
-using Domain.Tags.Repositories;
+﻿using Domain.Base;
 using Infrastructure.Services;
 using Infrastructure.Persistence.SQLServer.EF;
 using Infrastructure.Persistence.SQLServer.EF.Repositories;
-using Infrastructure.Persistence.SQLServer.EF.Services;
+using Infrastructure.QueryServices;
+using Application.Services;
+using Application.Core.Datas.Queries;
+using Domain.Core.Datas;
+using Domain.Core.DataCategories;
+using Domain.Core.Tags;
+using Domain.Core.Authors;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Serilog;
-using Serilog.Formatting.Json;
-using Serilog.Sinks.Elasticsearch;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using MongoDB.Driver.Core.Configuration;
 
 namespace Infrastructure
 {
@@ -29,6 +28,13 @@ namespace Infrastructure
     {
         public static void RegisterDependency(IServiceCollection services, IConfiguration configuration)
         {
+            string? connectionString = configuration.GetConnectionString("DefaultConnection");
+
+            if (string.IsNullOrEmpty(connectionString))
+            {
+                throw new InvalidOperationException("Connection string 'DefaultConnection' is not configured.");
+            }
+
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped<IDataRepository, DataRepository>();
             services.AddScoped<IDataCategoryRepository, DataCategoryRepository>();
@@ -42,7 +48,8 @@ namespace Infrastructure
             services.AddScoped<IAppLogger, SerilogAppLogger>();
 
             services.AddDbContext<EFDbContext>(options =>
-                options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
+                options.UseSqlServer(connectionString));
+
 
         }
     }

@@ -1,12 +1,12 @@
 ﻿using AutoMapper;
-using Domain.Tags.Repositories;
-using Domain.Tags.Models;
+using Infrastructure.Persistence.SQLServer.EF.Entities;
+using Domain.Core.Tags;
+using Domain.Core.Tags.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Infrastructure.Persistence.SQLServer.EF.Entities;
 
 namespace Infrastructure.Persistence.SQLServer.EF.Repositories
 {

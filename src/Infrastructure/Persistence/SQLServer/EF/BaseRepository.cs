@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 using Domain.Base;
-using Domain.Datas.Models;
 using Infrastructure.Persistence.SQLServer.EF.Entities;
 using Microsoft.EntityFrameworkCore;
 using System;

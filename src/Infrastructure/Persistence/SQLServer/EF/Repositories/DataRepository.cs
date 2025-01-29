@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
-using Domain.DataCategories.Models;
-using Domain.Datas.Models;
-using Domain.Datas.Repositories;
+using Domain.Core.Datas;
+using Domain.Core.Datas.Models;
 using Infrastructure.Persistence.SQLServer.EF.Entities;
 using Microsoft.EntityFrameworkCore;
 using Nest;

@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using Domain.DataCategories.Models;
+using Domain.Core.DataCategories.Models;
 using Infrastructure.Persistence.SQLServer.EF.Entities;
 using System;
 using System.Collections.Generic;

@@ -1,8 +1,7 @@
 ﻿using AutoMapper;
-using Domain.Datas.Models;
-using Domain.DataCategories.Models;
 using Infrastructure.Persistence.SQLServer.EF.Entities;
-using Application.Datas.QueryModels;
+using Application.Core.Datas.Queries.QueryModels;
+using Domain.Core.Datas.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
