@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Application.Core.Datas.Queries.GetDataById
+namespace Application.Core.Datas.Queries.GetDataViewById
 {
-    public record GetDataByIdQuery(Guid id) : IQuery<GetDataByIdDto>;
+    public record GetDataViewByIdQuery(Guid id) : IQuery<GetDataViewByIdDto>;
 }

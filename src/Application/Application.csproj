@@ -7,7 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="AutoMapper" Version="13.0.1" />
     <PackageReference Include="FluentValidation" Version="11.11.0" />
     <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="11.11.0" />
     <PackageReference Include="MediatR" Version="12.4.1" />
@@ -20,13 +19,14 @@
 
   <ItemGroup>
     <Folder Include="Core\Authors\Commands\" />
-    <Folder Include="Core\Authors\Queries\QueryModels\" />
+    <Folder Include="Core\Authors\Mappings\" />
+    <Folder Include="Core\Authors\Queries\" />
     <Folder Include="Core\DataCategories\Commands\" />
-    <Folder Include="Core\DataCategories\Queries\QueryModels\" />
+    <Folder Include="Core\DataCategories\Mappings\" />
+    <Folder Include="Core\DataCategories\Queries\" />
+    <Folder Include="Core\Datas\Mappings\" />
     <Folder Include="Core\Tags\Commands\" />
-    <Folder Include="Core\Tags\Queries\Dtos\" />
-    <Folder Include="Core\Tags\Queries\Mappings\" />
-    <Folder Include="Core\Tags\Queries\QueryModels\" />
+    <Folder Include="Core\Tags\Mappings\" />
     <Folder Include="Core\Tags\Queries\" />
   </ItemGroup>
 

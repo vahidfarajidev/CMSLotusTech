@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Domain.Core.DataCategories;
 using Domain.Core.DataCategories.Models;
+using Infrastructure.Persistence.SQLServer.EF.Base;
 using Infrastructure.Persistence.SQLServer.EF.Entities;
 using Microsoft.EntityFrameworkCore;
 using Nest;
@@ -10,7 +11,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Infrastructure.Persistence.SQLServer.EF.Repositories
+namespace Infrastructure.Persistence.SQLServer.EF.Core.DataCategories
 {
     public class DataCategoryRepository : BaseRepository<DataCategory, DataCategoryEntity>, IDataCategoryRepository
     {

@@ -1,5 +1,6 @@
 ﻿using Application.Core.Datas.Commands.CreateData;
 using Application.Core.Datas.Queries.GetDataById;
+using Application.Core.Datas.Queries.GetDataViewById;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.HttpResults;
@@ -33,6 +34,17 @@ namespace CMSLotusTech.Api.Controllers
         public async Task<IActionResult> GetDataById(Guid id)
         {
             var operationResult = await _mediator.Send(new GetDataByIdQuery(id));
+
+            if (operationResult.IsFailure)
+                return NotFound(new { error = operationResult.Error });
+
+            return Ok(operationResult.Value);
+        }
+
+        [HttpGet("view/{id}")]
+        public async Task<IActionResult> GetDataViewById(Guid id)
+        {
+            var operationResult = await _mediator.Send(new GetDataViewByIdQuery(id));
 
             if (operationResult.IsFailure)
                 return NotFound(new { error = operationResult.Error });

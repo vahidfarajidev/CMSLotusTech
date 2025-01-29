@@ -1,28 +1,25 @@
 ﻿using Application.Base;
-using Application.Core.Datas.Queries.Dtos;
-using AutoMapper;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MediatR;
 
 namespace Application.Core.Datas.Queries.GetDataById
 {
-    class GetDataByIdQueryHandler(IDataQueryService dataQueryService, IMapper mapper) : IQueryHandler<GetDataByIdQuery, DataDto>
+    class GetDataByIdQueryHandler(IGetDataByIdService getDataByIdService) : IQueryHandler<GetDataByIdQuery, GetDataByIdDto>
     {
-        private readonly IDataQueryService _dataQueryService = dataQueryService;
-        private readonly IMapper _mapper = mapper;
+        private readonly IGetDataByIdService _getDataByIdService = getDataByIdService;
 
-        public async Task<OperationResult<DataDto>> Handle(GetDataByIdQuery request, CancellationToken cancellationToken)
+        public async Task<OperationResult<GetDataByIdDto>> Handle(GetDataByIdQuery request, CancellationToken cancellationToken)
         {
-            var data = await _dataQueryService.GetDataById(request.id);
+            var getDataByIdDto = await _getDataByIdService.Handle(request.id, cancellationToken);
 
-            if (data == null)
-                return OperationResult<DataDto>.Failure("Data not found.");
+            if (getDataByIdDto == null)
+                return OperationResult<GetDataByIdDto>.Failure("Data not found.");
 
-            var dataDto = _mapper.Map<DataDto>(data);
-            return OperationResult<DataDto>.Success(dataDto);
+            return OperationResult<GetDataByIdDto>.Success(getDataByIdDto);
         }
     }
 }

@@ -14,6 +14,6 @@ namespace Domain.Base
         Task<IEnumerable<T>> GetAllAsync(CancellationToken cancellationToken);
         Task AddAsync(T model, CancellationToken cancellationToken);
         Task UpdateAsync(T model, CancellationToken cancellationToken);
-        Task DeleteAsync(Guid id, CancellationToken cancellationToken);
+        Task DeleteAsync(T model, CancellationToken cancellationToken);
     }
 }

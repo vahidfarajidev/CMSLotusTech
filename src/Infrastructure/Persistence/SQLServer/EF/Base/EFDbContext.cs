@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Infrastructure.Persistence.SQLServer.EF
+namespace Infrastructure.Persistence.SQLServer.EF.Base
 {
     public class EFDbContext : DbContext
     {

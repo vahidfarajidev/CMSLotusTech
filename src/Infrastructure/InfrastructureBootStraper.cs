@@ -1,14 +1,18 @@
 ﻿using Domain.Base;
 using Infrastructure.Services;
-using Infrastructure.Persistence.SQLServer.EF;
-using Infrastructure.Persistence.SQLServer.EF.Repositories;
-using Infrastructure.QueryServices;
 using Application.Services;
-using Application.Core.Datas.Queries;
 using Domain.Core.Datas;
 using Domain.Core.DataCategories;
 using Domain.Core.Tags;
 using Domain.Core.Authors;
+using Application.Core.Datas.Queries.GetDataViewById;
+using Application.Core.Datas.Queries.GetDataById;
+using Infrastructure.Persistence.SQLServer.EF.Core.Authors;
+using Infrastructure.Persistence.SQLServer.EF.Core.DataCategories;
+using Infrastructure.Persistence.SQLServer.EF.Core.Datas;
+using Infrastructure.Persistence.SQLServer.EF.Core.Tags;
+using Infrastructure.Persistence.SQLServer.EF.Base;
+using Infrastructure.Persistence.SQLServer.EF.Core.Datas.QueryServices;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -41,7 +45,8 @@ namespace Infrastructure
             services.AddScoped<IAuthorRepository, AuthorRepository>();
             services.AddScoped<ITagRepository, TagRepository>();
 
-            services.AddScoped<IDataQueryService, DataQueryService>();
+            services.AddScoped<IGetDataByIdService, GetDataByIdService>();
+            services.AddScoped<IGetDataViewByIdService, GetDataViewByIdService>();
 
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
 
@@ -49,54 +54,34 @@ namespace Infrastructure
 
             services.AddDbContext<EFDbContext>(options =>
                 options.UseSqlServer(connectionString));
-
-
         }
     }
 
     public static class LoggingExtensions
     {
+
         public static void AddSerilogLogging(this IHostBuilder hostBuilder, IConfiguration configuration)
         {
-            //Log.Logger = new LoggerConfiguration()
-            //    .Enrich.FromLogContext()
-            //    //.WriteTo.Console(new JsonFormatter())
-            //    .WriteTo.Elasticsearch(new ElasticsearchSinkOptions(new Uri("http://localhost:9200"))
-            //    {
-            //        AutoRegisterTemplate = true,
-            //        IndexFormat = "logs-{0:yyyy.MM.dd}"
-            //    })
-            //    .CreateLogger();
+            try
+            {
+                var elasticsearchUri = configuration["Serilog:WriteTo:0:Args:NodeUris"];
+                if (string.IsNullOrEmpty(elasticsearchUri))
+                    throw new InvalidOperationException("Elasticsearch NodeUris is not configured.");
 
-            Log.Logger = new LoggerConfiguration()
-            .ReadFrom.Configuration(configuration)
-            .CreateLogger();
+                Log.Logger = new LoggerConfiguration()
+                    .ReadFrom.Configuration(configuration)
+                    .CreateLogger();
 
-            hostBuilder.UseSerilog();
+                Log.Information("Serilog has been successfully configured.");
+
+                hostBuilder.UseSerilog();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Failed to configure Serilog.");
+                Console.WriteLine($"Error: {ex.Message}");
+                throw;
+            }
         }
-
-        //public static void AddSerilogLogging(this IHostBuilder hostBuilder, IConfiguration configuration)
-        //{
-        //    try
-        //    {
-        //        var elasticsearchUri = configuration["Serilog:WriteTo:0:Args:NodeUris"];
-        //        if (string.IsNullOrEmpty(elasticsearchUri))
-        //            throw new InvalidOperationException("Elasticsearch NodeUris is not configured.");
-
-        //        Log.Logger = new LoggerConfiguration()
-        //            .ReadFrom.Configuration(configuration)
-        //            .CreateLogger();
-
-        //        Log.Information("Serilog has been successfully configured.");
-
-        //        hostBuilder.UseSerilog();
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        Console.WriteLine("Failed to configure Serilog.");
-        //        Console.WriteLine($"Error: {ex.Message}");
-        //        throw;
-        //    }
-        //}
     }
 }

@@ -10,6 +10,5 @@ namespace Domain.Core.Datas
 {
     public interface IDataRepository : IRepository<Data>
     {
-        Task<Data> GetDataByIdTestAsync(Guid id, CancellationToken cancellationToken);
     }
 }

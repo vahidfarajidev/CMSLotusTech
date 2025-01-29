@@ -26,8 +26,6 @@ namespace Application
 
             services.AddValidatorsFromAssembly(typeof(CreateDataCommandValidator).Assembly);
 
-            services.AddAutoMapper(Assembly.GetExecutingAssembly());
-
             services.AddScoped<IDataDomainService, DataDomainService>();
         }
     }

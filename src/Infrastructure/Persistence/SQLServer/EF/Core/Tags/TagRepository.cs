@@ -7,8 +7,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Infrastructure.Persistence.SQLServer.EF.Base;
 
-namespace Infrastructure.Persistence.SQLServer.EF.Repositories
+namespace Infrastructure.Persistence.SQLServer.EF.Core.Tags
 {
     public class TagRepository : BaseRepository<Tag, TagEntity>, ITagRepository
     {

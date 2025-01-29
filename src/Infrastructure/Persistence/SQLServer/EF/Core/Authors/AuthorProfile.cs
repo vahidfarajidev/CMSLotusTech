@@ -7,13 +7,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Infrastructure.Persistence.SQLServer.EF.MappingProfiles
+namespace Infrastructure.Persistence.SQLServer.EF.Core.Authors
 {
     public class AuthorProfile : Profile
     {
-        public AuthorProfile() 
+        public AuthorProfile()
         {
-            CreateMap<Author, AuthorEntity>().ReverseMap();
+            // It is used for adding Data, Author
+            CreateMap<Author, AuthorEntity>();
         }
     }
 }

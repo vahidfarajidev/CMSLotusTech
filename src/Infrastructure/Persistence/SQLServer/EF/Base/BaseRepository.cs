@@ -8,18 +8,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Infrastructure.Persistence.SQLServer.EF
+namespace Infrastructure.Persistence.SQLServer.EF.Base
 {
     public class BaseRepository<TModel, TEntity> : IRepository<TModel>
         where TModel : BaseModel
         where TEntity : BaseEntity
     {
-        protected readonly EFDbContext _efDbContext;
+        protected readonly EFDbContext _eFDbContext;
         protected readonly IMapper _mapper;
 
         public BaseRepository(EFDbContext efDbContext, IMapper mapper)
         {
-            _efDbContext = efDbContext;
+            _eFDbContext = efDbContext;
             _mapper = mapper;
         }
 
@@ -27,17 +27,17 @@ namespace Infrastructure.Persistence.SQLServer.EF
         {
             var entity = _mapper.Map<TEntity>(model);
 
-            await _efDbContext.AddAsync(entity, cancellationToken);
+            await _eFDbContext.AddAsync(entity, cancellationToken);
         }
 
-        public Task DeleteAsync(Guid id, CancellationToken cancellationToken)
+        public Task DeleteAsync(TModel model, CancellationToken cancellationToken)
         {
             throw new NotImplementedException();
         }
 
         public async Task<bool> ExistsAsync(Guid id, CancellationToken cancellationToken)
         {
-            return (await _efDbContext.Set<TEntity>().FirstOrDefaultAsync(x => x.Id == id, cancellationToken)) != null;
+            return await _eFDbContext.Set<TEntity>().FirstOrDefaultAsync(x => x.Id == id, cancellationToken) != null;
         }
 
         public Task<IEnumerable<TModel>> GetAllAsync(CancellationToken cancellationToken)
@@ -47,7 +47,7 @@ namespace Infrastructure.Persistence.SQLServer.EF
 
         public async Task<TModel?> GetByIdAsync(Guid id, CancellationToken cancellationToken)
         {
-            var entity = await _efDbContext.Set<TEntity>().FirstOrDefaultAsync(x => x.Id.Equals(id), cancellationToken);
+            var entity = await _eFDbContext.Set<TEntity>().FirstOrDefaultAsync(x => x.Id.Equals(id), cancellationToken);
 
             if (entity == null) return null;
 

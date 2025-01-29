@@ -4,11 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Application.Core.DataCategories.Queries.Dtos
+namespace Application.Base
 {
-    public class DataCategoryDto
+    public abstract class BaseDto
     {
         public Guid Id { get; set; }
-        public string DataCategoryName { get; set; }
     }
 }

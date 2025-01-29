@@ -7,13 +7,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Infrastructure.Persistence.SQLServer.EF.MappingProfiles
+namespace Infrastructure.Persistence.SQLServer.EF.Core.DataCategories
 {
     public class DataCategoryProfie : Profile
     {
-        public DataCategoryProfie() 
+        public DataCategoryProfie()
         {
-            CreateMap<DataCategory, DataCategoryEntity>().ReverseMap();
+            // It is used for adding Data, DataCategory
+            CreateMap<DataCategory, DataCategoryEntity>();
         }
     }
 }

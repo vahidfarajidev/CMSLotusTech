@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Domain.Core.Datas;
 using Domain.Core.Datas.Models;
+using Infrastructure.Persistence.SQLServer.EF.Base;
 using Infrastructure.Persistence.SQLServer.EF.Entities;
 using Microsoft.EntityFrameworkCore;
 using Nest;
@@ -10,7 +11,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Infrastructure.Persistence.SQLServer.EF.Repositories
+namespace Infrastructure.Persistence.SQLServer.EF.Core.Datas
 {
     public class DataRepository : BaseRepository<Data, DataEntity>, IDataRepository
     {
@@ -19,12 +20,5 @@ namespace Infrastructure.Persistence.SQLServer.EF.Repositories
         {
 
         }
-
-        public async Task<Data> GetDataByIdTestAsync(Guid id, CancellationToken cancellationToken)
-        {
-            var dataEntity = await _efDbContext.Set<DataEntity>().FirstOrDefaultAsync(d => d.Id.Equals(id), cancellationToken);
-
-            return _mapper.Map<Data>(dataEntity);
-        }
-    }   
+    }
 }
