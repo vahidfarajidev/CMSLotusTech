@@ -1,11 +1,11 @@
-﻿using Application.Base.Logs;
+﻿using Application.Base.Services;
 using Application.Datas.Services;
 using Domain.Authors.Repositories;
 using Domain.Base;
 using Domain.DataCategories.Repositories;
 using Domain.Datas.Repositories;
 using Domain.Tags.Repositories;
-using Infrastructure.Base.Logs;
+using Infrastructure.Services;
 using Infrastructure.Persistence.SQLServer.EF;
 using Infrastructure.Persistence.SQLServer.EF.Repositories;
 using Infrastructure.Persistence.SQLServer.EF.Services;

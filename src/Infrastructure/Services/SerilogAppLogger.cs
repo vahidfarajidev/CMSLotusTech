@@ -1,4 +1,4 @@
-﻿using Application.Base.Logs;
+﻿using Application.Base.Services;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Infrastructure.Base.Logs
+namespace Infrastructure.Services
 {
     public class SerilogAppLogger : IAppLogger
     {
