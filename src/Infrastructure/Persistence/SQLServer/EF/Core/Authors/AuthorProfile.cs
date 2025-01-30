@@ -13,8 +13,6 @@ namespace Infrastructure.Persistence.SQLServer.EF.Core.Authors
     {
         public AuthorProfile()
         {
-            // It is used for adding Data, Author
-            CreateMap<Author, AuthorEntity>();
         }
     }
 }

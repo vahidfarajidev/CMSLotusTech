@@ -13,8 +13,6 @@ namespace Infrastructure.Persistence.SQLServer.Dapper.Core.Authors
     {
         public AuthorProfile()
         {
-            // It is used for adding Data, Author
-            CreateMap<Author, AuthorEntity>();
         }
     }
 }

@@ -7,12 +7,15 @@ using Domain.Core.Tags;
 using Domain.Core.Authors;
 using Application.Core.Datas.Queries.GetDataViewById;
 using Application.Core.Datas.Queries.GetDataById;
+
+using Infrastructure.Persistence.SQLServer.EF.Base;
+using Infrastructure.Persistence.SQLServer.Dapper.Base;
+
 using Infrastructure.Persistence.SQLServer.EF.Core.Authors;
 using Infrastructure.Persistence.SQLServer.EF.Core.DataCategories;
 using Infrastructure.Persistence.SQLServer.EF.Core.Datas;
 using Infrastructure.Persistence.SQLServer.EF.Core.Tags;
-using Infrastructure.Persistence.SQLServer.EF.Base;
-using Infrastructure.Persistence.SQLServer.Dapper.Base;
+
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;

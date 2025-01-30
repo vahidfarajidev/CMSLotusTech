@@ -13,8 +13,6 @@ namespace Infrastructure.Persistence.SQLServer.EF.Core.DataCategories
     {
         public DataCategoryProfie()
         {
-            // It is used for adding Data, DataCategory
-            CreateMap<DataCategory, DataCategoryEntity>();
         }
     }
 }

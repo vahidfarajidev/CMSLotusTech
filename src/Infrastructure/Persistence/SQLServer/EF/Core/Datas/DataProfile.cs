@@ -24,7 +24,6 @@ namespace Infrastructure.Persistence.SQLServer.EF.Core.Datas
                 .ForMember(dest => dest.AuthorFullName, opt => opt.MapFrom(src => src.Author.FullName));
 
             CreateMap<DataEntity, GetDataByIdDto>();
-
         }
     }
 }
