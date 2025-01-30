@@ -7,13 +7,9 @@ using System.Threading.Tasks;
 
 namespace Application.Core.Datas.Queries.GetDataViewById
 {
-    public class GetDataViewByIdDto : BaseDto
+    public class GetDataViewByIdDto : BaseDataDto
     {
         public string DataCategoryName { get; set; }
         public string AuthorFullName { get; set; }
-        public string DataTitle { get; set; }
-        public string DataSummary { get; set; }
-        public string DataBody { get; set; }
-        public int DataStatus { get; set; }
     }
 }

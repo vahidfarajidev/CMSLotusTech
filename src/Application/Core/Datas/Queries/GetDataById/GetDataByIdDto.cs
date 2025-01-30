@@ -7,13 +7,9 @@ using System.Threading.Tasks;
 
 namespace Application.Core.Datas.Queries.GetDataById
 {
-    public class GetDataByIdDto : BaseDto
+    public class GetDataByIdDto : BaseDataDto
     {
-        public Guid DataCategoryId { get; private set; }
-        public Guid AuthorId { get; private set; }
-        public string DataTitle { get; private set; }
-        public string DataSummary { get; private set; }
-        public string DataBody { get; private set; }
-        public int DataStatus { get; private set; }
+        public Guid DataCategoryId { get; set; }
+        public Guid AuthorId { get; set; }
     }
 }
