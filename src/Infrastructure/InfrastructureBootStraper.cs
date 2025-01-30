@@ -12,7 +12,7 @@ using Infrastructure.Persistence.SQLServer.EF.Core.DataCategories;
 using Infrastructure.Persistence.SQLServer.EF.Core.Datas;
 using Infrastructure.Persistence.SQLServer.EF.Core.Tags;
 using Infrastructure.Persistence.SQLServer.EF.Base;
-using Infrastructure.Persistence.SQLServer.EF.Core.Datas.QueryServices;
+using Infrastructure.Persistence.SQLServer.Dapper.Base;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -25,6 +25,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using MongoDB.Driver.Core.Configuration;
+using Infrastructure.Persistence.SQLServer.Dapper;
 
 namespace Infrastructure
 {
@@ -45,8 +46,10 @@ namespace Infrastructure
             services.AddScoped<IAuthorRepository, AuthorRepository>();
             services.AddScoped<ITagRepository, TagRepository>();
 
-            services.AddScoped<IGetDataByIdService, GetDataByIdService>();
-            services.AddScoped<IGetDataViewByIdService, GetDataViewByIdService>();
+            services.AddScoped<IGetDataByIdService,
+                Persistence.SQLServer.EF.Core.Datas.QueryServices.GetDataByIdService>();
+            services.AddScoped<IGetDataViewByIdService, 
+                Persistence.SQLServer.Dapper.Core.Datas.QueryServices.GetDataViewByIdService>();
 
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
 
@@ -54,6 +57,8 @@ namespace Infrastructure
 
             services.AddDbContext<EFDbContext>(options =>
                 options.UseSqlServer(connectionString));
+
+            services.AddScoped(_ => new DapperContext(connectionString));
         }
     }
 
