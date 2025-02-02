@@ -1,0 +1,42 @@
+networks:
+  app_network:
+    driver: bridge
+
+services:
+  sqlserver:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: sqlserver
+    environment:
+      SA_PASSWORD: "AbC123456789@"
+      ACCEPT_EULA: "Y"
+    ports:
+      - "1444:1433"
+    networks:
+      - app_network
+
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:8.6.0
+    container_name: elasticsearch
+    environment:
+      - discovery.type=single-node
+      - xpack.security.enabled=false
+    ports:
+      - "9200:9200"
+    networks:
+      - app_network
+
+  cmslotustech.api:
+    build:
+      context: .
+      dockerfile: src/EndPoints/CMSLotusTech.Api/Dockerfile
+    image: cmslotustechapi
+    depends_on:
+      - sqlserver
+      - elasticsearch
+    environment:
+      DB_SERVER: sqlserver
+      DB_PASSWORD: "AbC123456789@"
+      ELASTICSEARCH_HOST: elasticsearch
+      ASPNETCORE_ENVIRONMENT: Production
+    networks:
+      - app_network

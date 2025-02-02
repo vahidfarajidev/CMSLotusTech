@@ -26,6 +26,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CMSLotusTech.Api", "src\End
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain.Tests", "tests\Domain.Tests\Domain.Tests.csproj", "{0284212B-206C-4C03-9414-BF9424C7EA72}"
 EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{8FC88A30-13FA-418B-8FD3-95CD6778329C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -56,6 +58,10 @@ Global
 		{0284212B-206C-4C03-9414-BF9424C7EA72}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0284212B-206C-4C03-9414-BF9424C7EA72}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0284212B-206C-4C03-9414-BF9424C7EA72}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8FC88A30-13FA-418B-8FD3-95CD6778329C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8FC88A30-13FA-418B-8FD3-95CD6778329C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8FC88A30-13FA-418B-8FD3-95CD6778329C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8FC88A30-13FA-418B-8FD3-95CD6778329C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
